@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editBarButton: UIBarButtonItem!
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
     var partyItems = ["Potato Chips",
                       "Tortilla Chips",
                       "Salsa",
@@ -69,6 +71,18 @@ class ViewController: UIViewController {
             tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
         }
     }
+    
+    @IBAction func editBarButtonPressed(_ sender: UIBarButtonItem) {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            editBarButton.title = "Edit"
+            addBarButton.isEnabled = true
+        } else {
+            tableView.setEditing(true, animated: true)
+            editBarButton.title = "Done"
+            addBarButton.isEnabled = false
+        }
+    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -83,5 +97,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = partyItems[indexPath.row]
         print(">>> Dequeing the table view cell for indexPath.row = \(indexPath.row) where the cell contains item \(partyItems[indexPath.row])")
         return cell
-    }    
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            partyItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = partyItems[sourceIndexPath.row]
+        partyItems.remove(at: sourceIndexPath.row)
+        partyItems.insert(itemToMove, at: destinationIndexPath.row)
+    }
 }
