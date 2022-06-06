@@ -101,10 +101,19 @@
                                 <action selector="cancelBarButtonPressed:" destination="DPL-cJ-FNR" id="YcT-a3-VQF"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LVo-wH-YOV"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LVo-wH-YOV">
+                            <connections>
+                                <segue destination="AK2-Hu-X5r" kind="unwind" unwindAction="unwindFromItemDetailViewControllerWithSegue:" id="ooq-1G-kLB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="partyItemField" destination="EV9-r3-YQG" id="eHg-ST-MOs"/>
+                        <outlet property="personResponsibleField" destination="l7g-l5-CVA" id="aQq-Fh-jdC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VLP-WP-E8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="AK2-Hu-X5r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2928.75" y="138.38028169014083"/>
         </scene>

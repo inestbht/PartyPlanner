@@ -10,8 +10,18 @@ import UIKit
 
 class ItemDetailViewController: UIViewController {
 
+    @IBOutlet weak var partyItemField: UITextField!
+    @IBOutlet weak var personResponsibleField: UITextField!
+    var partyItem = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        partyItemField.text = partyItem
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        partyItem = partyItemField.text!
     }
 
     @IBAction func cancelBarButtonPressed(_ sender: UIBarButtonItem) {
