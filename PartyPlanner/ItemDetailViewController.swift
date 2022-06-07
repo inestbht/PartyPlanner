@@ -9,7 +9,8 @@
 import UIKit
 
 class ItemDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
     @IBOutlet weak var partyItemField: UITextField!
     @IBOutlet weak var personResponsibleField: UITextField!
     var partyItem = ""
@@ -18,12 +19,31 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         partyItemField.text = partyItem
+        partyItemField.becomeFirstResponder()
+        enableDisableSave()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         partyItem = partyItemField.text!
     }
-
+    
+    func enableDisableSave() {
+        
+        let blankString = String(repeating: " ", count: (partyItemField.text?.count)!)
+        
+        if partyItemField.text == blankString {
+            saveBarButton.isEnabled = false
+        } else {
+            saveBarButton.isEnabled = true
+        }
+        
+        // saveBarButton.isEnabled = ( (partyItemField.text?.isEmpty)! ? false : true)
+    }
+    
+    @IBAction func partyItemFieldChanged(_ sender: UITextField) {
+        enableDisableSave()
+    }
+    
     @IBAction func cancelBarButtonPressed(_ sender: UIBarButtonItem) {
         let isPresentingInAddMode = presentingViewController is UINavigationController
         if isPresentingInAddMode {

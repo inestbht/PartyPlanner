@@ -91,6 +91,9 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="partyItemFieldChanged:" destination="DPL-cJ-FNR" eventType="editingChanged" id="QAl-KK-pee"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l7g-l5-CVA">
                                 <rect key="frame" x="20" y="187" width="284" height="34"/>
@@ -117,6 +120,7 @@
                     <connections>
                         <outlet property="partyItemField" destination="EV9-r3-YQG" id="eHg-ST-MOs"/>
                         <outlet property="personResponsibleField" destination="l7g-l5-CVA" id="aQq-Fh-jdC"/>
+                        <outlet property="saveBarButton" destination="LVo-wH-YOV" id="fKB-dp-X1r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VLP-WP-E8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
